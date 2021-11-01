@@ -55,10 +55,10 @@ const Nav = () => {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link"
-                                        to="/myBookings"
+                                        to={`/myBookings/${auth.currentUser.uid}`}
                                         activeClassName="active"
                                     >
-                                       My Bookings
+                                       Bookings
                                     </NavLink>
                                 </li>
                             )}
@@ -66,7 +66,7 @@ const Nav = () => {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link"
-                                        to="/allBookings"
+                                        to="/Bookings"
                                         activeClassName="active"
                                     >
                                        Manage all Bookings
@@ -80,7 +80,7 @@ const Nav = () => {
                                         to="/addService"
                                         activeClassName="active"
                                     >
-                                       Add new service
+                                       Add new packages
                                     </NavLink>
                                 </li>
                             )}

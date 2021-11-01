@@ -31,7 +31,11 @@ async function main() {
     res.send(cursor)
   })
 
-  app.post()
+  app.post('/orders', async(req, res)=>{
+    const order = req.body
+    const result = await orders.insertOne(order)
+    res.send(result)
+  })
 
   
 }

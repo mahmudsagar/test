@@ -1,6 +1,6 @@
 import { getAuth } from "@firebase/auth";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
@@ -8,26 +8,38 @@ const Order = () => {
     const [order, setOrder] = useState({});
     const [address, setAddress] = useState("");
     const [number, setNumber] = useState("");
+    const history = useHistory()
     const auth = getAuth();
     const param = useParams();
     const currentUser = auth.currentUser;
-
     const handleOrder = () => {
         const orderDetail = {
             order_id: param.id,
+            order_uid: currentUser.uid,
             order_author: currentUser.displayName,
             order_author_email: currentUser.email,
             order_address: address,
             order_nnumber: number
         }
-        console.log(orderDetail);
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify(orderDetail),
+            headers: {
+                'Content-type': 'application/json',
+            },
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                history.push("/thank-you")
+            });
     };
 
     useEffect(() => {
         fetch(`http://localhost:5000/packages/${param.id}`)
             .then((res) => res.json())
             .then((data) => setOrder(data));
-    }, []);
+    }, [param.id]);
     return (
         <>
             <Nav />
@@ -74,7 +86,7 @@ const Order = () => {
                             onChange={(e)=> setAddress(e.target.value)}
                         ></textarea>
                         <button
-                            className="btn btn-success"
+                            className="btn btn-success mt-3"
                             onClick={handleOrder}
                         >
                             submit

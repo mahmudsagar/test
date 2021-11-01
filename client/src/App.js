@@ -5,6 +5,8 @@ import Home from './Components/Home/Home';
 import NoMatch from './Components/NoMatch/NoMatch';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Order from "./Components/Order/Order";
+import ThankYou from './Components/ThankYou/ThankYou';
+import OrderList from './Components/OrderList/OrderList';
 
 function App() {
   return (
@@ -22,10 +24,22 @@ function App() {
                 <PrivateRoute path="/order/:id">
                     <Order />
                 </PrivateRoute>
-               
-            <Route path="*">
-                <NoMatch />
-            </Route>
+                <PrivateRoute path="/thank-you">
+                    <ThankYou />
+                </PrivateRoute>
+                <PrivateRoute path="/Bookings">
+                    <OrderList />
+                </PrivateRoute>
+                <PrivateRoute path="/Bookings/:uid">
+                    <OrderList />
+                </PrivateRoute>
+                <PrivateRoute path="/addService">
+                    <OrderList />
+                </PrivateRoute>
+                
+                <Route path="*">
+                    <NoMatch />
+                </Route>
             </Switch>
         </Router>
   );

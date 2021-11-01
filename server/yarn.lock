@@ -291,7 +291,6 @@
     "bson" "^4.5.2"
     "denque" "^2.0.1"
     "mongodb-connection-string-url" "^2.0.0"
-    "saslprep" "^1.0.3"
   optionalDependencies:
     "saslprep" "^1.0.3"
 
