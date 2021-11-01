@@ -3,6 +3,8 @@ import './App.css';
 import FirebaseAuth from './Firebase/FirebaseAuth';
 import Home from './Components/Home/Home';
 import NoMatch from './Components/NoMatch/NoMatch';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Order from "./Components/Order/Order";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
                 <Route exact path="/home">
                     <Home />
                 </Route>
+                <PrivateRoute path="/order/:id">
+                    <Order />
+                </PrivateRoute>
                
             <Route path="*">
                 <NoMatch />

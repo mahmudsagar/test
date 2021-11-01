@@ -50,24 +50,6 @@ const Nav = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link"
-                                    to="/contact"
-                                    activeClassName="active"
-                                >
-                                    Contact
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link"
-                                    to="/about"
-                                    activeClassName="active"
-                                >
-                                    About us
-                                </NavLink>
-                            </li>
 
                             {isLogin && (
                                 <li className="nav-item">
