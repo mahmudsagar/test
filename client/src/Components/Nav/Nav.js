@@ -55,7 +55,7 @@ const Nav = () => {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link"
-                                        to={`/myBookings/${auth.currentUser.uid}`}
+                                        to={`/bookings/${localStorage.getItem("id")}`}
                                         activeClassName="active"
                                     >
                                        Bookings
@@ -66,7 +66,7 @@ const Nav = () => {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link"
-                                        to="/Bookings"
+                                        to="/bookings"
                                         activeClassName="active"
                                     >
                                        Manage all Bookings

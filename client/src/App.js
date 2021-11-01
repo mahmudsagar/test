@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Order from "./Components/Order/Order";
 import ThankYou from './Components/ThankYou/ThankYou';
 import OrderList from './Components/OrderList/OrderList';
+import AddPackages from './Components/AddPackages/AddPackages';
 
 function App() {
   return (
@@ -21,20 +22,20 @@ function App() {
                 <Route exact path="/home">
                     <Home />
                 </Route>
-                <PrivateRoute path="/order/:id">
+                <PrivateRoute path="/order/:name">
                     <Order />
                 </PrivateRoute>
                 <PrivateRoute path="/thank-you">
                     <ThankYou />
                 </PrivateRoute>
-                <PrivateRoute path="/Bookings">
+                <PrivateRoute  path="/bookings/:id">
                     <OrderList />
                 </PrivateRoute>
-                <PrivateRoute path="/Bookings/:uid">
+                <PrivateRoute exact path="/bookings">
                     <OrderList />
                 </PrivateRoute>
                 <PrivateRoute path="/addService">
-                    <OrderList />
+                    <AddPackages />
                 </PrivateRoute>
                 
                 <Route path="*">

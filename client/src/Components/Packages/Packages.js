@@ -6,7 +6,7 @@ const Packages = () => {
     const [packages, setPackages] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/packages?limit=6")
+        fetch("https://travel-plan-server.herokuapp.com/packages?limit=6")
         .then(response => response.json())
         .then(data =>setPackages(data))
     }, []);
@@ -25,7 +25,7 @@ const Packages = () => {
                                 <div className="card-text d-flex justify-content-between">
                                     <span className="btn btn-success">{packs.price}</span> <span className="btn btn-primary">{packs.duration}</span>
                                 </div>
-                                <Link to={`/order/${packs._id}`} className="btn text-danger my-2 float-end text-uppercase fw-bold">Book a tour</Link>
+                                <Link to={`/order/${packs.name}`} className="btn text-danger my-2 float-end text-uppercase fw-bold">Book a tour</Link>
                             </div>
                         </div>
                     </div>;

@@ -5,41 +5,41 @@ import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
 const Order = () => {
-    const [order, setOrder] = useState({});
     const [address, setAddress] = useState("");
     const [number, setNumber] = useState("");
-    const history = useHistory()
+    const [order, setOrder] = useState(null);
+    const history = useHistory();
     const auth = getAuth();
     const param = useParams();
     const currentUser = auth.currentUser;
     const handleOrder = () => {
         const orderDetail = {
-            order_id: param.id,
+            package_name: param.name,
             order_uid: currentUser.uid,
             order_author: currentUser.displayName,
             order_author_email: currentUser.email,
             order_address: address,
-            order_nnumber: number
-        }
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            body: JSON.stringify(orderDetail),
+            order_nnumber: number,
+        };
+        fetch("https://travel-plan-server.herokuapp.com/orders", {
+            method: "POST",
             headers: {
-                'Content-type': 'application/json',
+                "Content-type": "application/json",
             },
-            })
+            body: JSON.stringify(orderDetail),
+        })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json)
-                history.push("/thank-you")
+                console.log(json);
+                history.push("/thank-you");
             });
     };
 
     useEffect(() => {
-        fetch(`http://localhost:5000/packages/${param.id}`)
+        fetch(`https://travel-plan-server.herokuapp.com/packages/${param.name}`)
             .then((res) => res.json())
             .then((data) => setOrder(data));
-    }, [param.id]);
+    }, [param.name]);
     return (
         <>
             <Nav />
@@ -74,7 +74,7 @@ const Order = () => {
                             className="form-control mb-3"
                             id="number"
                             placeholder="enter your phonenumber"
-                            onBlur={(e)=> setNumber(e.target.value)}
+                            onBlur={(e) => setNumber(e.target.value)}
                         />
                         <textarea
                             name="address"
@@ -83,7 +83,7 @@ const Order = () => {
                             cols={30}
                             rows={10}
                             placeholder="enter your adress"
-                            onChange={(e)=> setAddress(e.target.value)}
+                            onChange={(e) => setAddress(e.target.value)}
                         ></textarea>
                         <button
                             className="btn btn-success mt-3"
